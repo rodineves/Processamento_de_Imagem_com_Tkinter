@@ -21,7 +21,20 @@ def compair(img_ori_pross, img_mine):
     if img_ori_pross.size != img_mine.size or img_ori_pross.mode != img_mine.mode:
         raise ValueError("As imagens não são do mesmo tamanho ou modo.")
     
-    l, c = img_ori_pross
+    l, c = img_ori_pross.size
+    new_img = Image.new("RGB", (l, c))
+    
+    for x in range(l):
+        for y in range(c):
+            pxl_1 = img_ori_pross.getpixel((x, y))
+            pxl_2 = img_mine.getpixel((x, y))
+            pxl = pxl_1 - pxl_2
+            if pxl == 0:
+                new_img.putpixel((x, y), (255, 255, 255))
+            elif pxl > 0:
+                new_img.putpixel((x, y), (0, 0, 0))
+            else:
+                new_img.putpixel((x, y), (128, 128, 128))
     
     qtd_pxl = l*c
     
