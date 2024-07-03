@@ -7,7 +7,7 @@ class Processamento:
     def __init__(self, img_ori):
         self.img = img_ori.convert("RGB")
     
-    # método de imprimir imagem
+    # Método de imprimir imagem
     def display_img(self, img): 
         fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 5)) 
         ax1.imshow(np.array(self.img))
@@ -16,7 +16,7 @@ class Processamento:
         ax2.axis('off')
         plt.show()
     
-    # método de negativar imagem
+    # Método de negativar imagem
     def negative(self):
         l, c = self.img.size
         inverted_img = Image.new("RGB", (l, c))
