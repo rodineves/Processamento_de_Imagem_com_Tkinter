@@ -22,20 +22,22 @@ def compair(img_ori_pross, img_mine):
         raise ValueError("As imagens não são do mesmo tamanho ou modo.")
     
     l, c = img_ori_pross.size
-    new_img = Image.new("RGB", (l, c))
+    print(f"{l} e {c}")
+    matrix = [[0 for _ in range(c)] for _ in range(l)]
     
     for x in range(l):
         for y in range(c):
             pxl_1 = img_ori_pross.getpixel((x, y))
             pxl_2 = img_mine.getpixel((x, y))
-            pxl = pxl_1 - pxl_2
-            if pxl == 0:
-                new_img.putpixel((x, y), (255, 255, 255))
-            elif pxl > 0:
-                new_img.putpixel((x, y), (0, 0, 0))
+            # Supondo que os pixels são tuplas RGB, devemos calcular a diferença para cada componente
+            if isinstance(pxl_1, tuple):
+                pxl = tuple(p2 - p1 for p1, p2 in zip(pxl_1, pxl_2))
             else:
-                new_img.putpixel((x, y), (128, 128, 128))
-    
+                pxl = pxl_2 - pxl_1
+            matrix[x][y] = pxl
+            
+    return matrix
+
     qtd_pxl = l*c
     
     img_ori_pross_array = np.array(img_ori_pross)
