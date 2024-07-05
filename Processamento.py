@@ -49,6 +49,7 @@ class Processamento:
                     img_mono.putpixel((x, y), (media, media, media))
                 else:
                     img_mono.putpixel((x, y), (pxl, pxl, pxl))
+        img_mono = self.img.convert("L")
         img_mono.save("imgs/gatenho_monocroma.jpg")
         #self.display_img(img_mono)
         return img_mono

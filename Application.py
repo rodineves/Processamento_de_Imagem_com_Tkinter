@@ -25,7 +25,17 @@ class Application:
     def tela(self):
         self.root.title("Verificação de Processamento de Imagem")
         self.root.configure(background="#1e3743")
-        self.root.geometry("1000x700")
+        
+        largura = 1000
+        altura = 700
+        largura_tela = root.winfo_screenwidth()
+        altura_tela = root.winfo_screenheight()
+
+        # Calcular a posição inicial para centralizar a janela
+        posX = (largura_tela - largura) // 2
+        posY = (altura_tela - altura) // 2
+        
+        self.root.geometry(f"{largura}x{altura}+{posX}+{posY}")
         self.root.resizable(True, True)
 
     def frames_da_tela(self):
@@ -136,15 +146,18 @@ class Application:
 
     def plot_error_matrix(self, matrix):
         matrix = np.array(matrix)
-
-        # Configurar limites de cor
-        min_val, max_val = -255, 255
+        
+        # Normalizar a matriz para o intervalo [0, 255]
+        min_val = matrix.min()
+        max_val = matrix.max()
+        norm_matrix = (matrix - min_val) / (max_val - min_val) * 255
+        norm_matrix = norm_matrix.astype(np.uint8)  # Converter para uint8
 
         # Criar a figura e o eixo para plotar a matriz de erro
         fig, ax = plt.subplots()
-        cax = ax.imshow(matrix, cmap='bwr', vmin=min_val, vmax=max_val, interpolation='nearest')
+        cax = ax.imshow(norm_matrix, cmap='seismic', interpolation='nearest')
         fig.colorbar(cax)
-        plt.axis('off')  # Opcional: remove os eixos para focar apenas na imagem
+        plt.axis('off')
 
         # Criar o canvas do matplotlib e adicioná-lo ao frame2
         canvas = FigureCanvasTkAgg(fig, master=self.frame2)
