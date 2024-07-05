@@ -151,5 +151,5 @@ class Application:
         canvas.draw()
         canvas.get_tk_widget().place(relx=0.55, rely=0.19, relwidth=0.45, relheight=0.45)
 
-
 Application()
+
