@@ -25,7 +25,7 @@ class Application:
     def tela(self):
         self.root.title("Verificação de Processamento de Imagem")
         self.root.configure(background="#1e3743")
-        self.root.geometry("800x700")
+        self.root.geometry("1000x700")
         self.root.resizable(True, True)
 
     def frames_da_tela(self):
@@ -135,21 +135,21 @@ class Application:
                 self.plot_error_matrix(self.matriz_de_erro)
 
     def plot_error_matrix(self, matrix):
-       
         matrix = np.array(matrix)
-            
+
         # Configurar limites de cor
         min_val, max_val = -255, 255
-        
+
         # Criar a figura e o eixo para plotar a matriz de erro
         fig, ax = plt.subplots()
         cax = ax.imshow(matrix, cmap='bwr', vmin=min_val, vmax=max_val, interpolation='nearest')
         fig.colorbar(cax)
         plt.axis('off')  # Opcional: remove os eixos para focar apenas na imagem
-        
+
         # Criar o canvas do matplotlib e adicioná-lo ao frame2
         canvas = FigureCanvasTkAgg(fig, master=self.frame2)
         canvas.draw()
         canvas.get_tk_widget().place(relx=0.55, rely=0.19, relwidth=0.45, relheight=0.45)
+
 
 Application()
