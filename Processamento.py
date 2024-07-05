@@ -30,7 +30,7 @@ class Processamento:
                 else:
                     inverted_pixel = 255 - pxl
                 inverted_img.putpixel((x, y), inverted_pixel)
-        inverted_img.save("imgs/gatenho_negativo.jpg")
+        #inverted_img.save("imgs/gatenho_negativo.jpg")
         #self.display_img(inverted_img)
         return inverted_img
     
@@ -50,7 +50,7 @@ class Processamento:
                 else:
                     img_mono.putpixel((x, y), (pxl, pxl, pxl))
         img_mono = self.img.convert("L")
-        img_mono.save("imgs/gatenho_monocroma.jpg")
+        #img_mono.save("imgs/gatenho_monocroma.jpg")
         #self.display_img(img_mono)
         return img_mono
     
@@ -68,7 +68,7 @@ class Processamento:
                     img_bi.putpixel((x, y), (0, 0, 0))
                 else:
                     img_bi.putpixel((x, y), (255, 255, 255))
-        img_bi.save("imgs/gatenho_binarizado.jpg")
+        #img_bi.save("imgs/gatenho_binarizado.jpg")
         #self.display_img(img_bi)
         return img_bi
     
@@ -103,7 +103,7 @@ class Processamento:
                             img.putpixel((x, y), (255, 255, 255))
                         if thresholds[i] <= media < thresholds[i+1]:
                             img.putpixel((x, y), (thresholds[i], thresholds[i], thresholds[i]))
-        img.save("imgs/gatenho_threshhold.jpg")
+        #img.save("imgs/gatenho_threshhold.jpg")
         #self.display_img(img)
         return img
     

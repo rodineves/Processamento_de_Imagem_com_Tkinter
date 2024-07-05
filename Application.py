@@ -141,21 +141,17 @@ class Application:
 
             if self.image2:
                 # Calcula a matriz de erro
-                self.matriz_de_erro = compair(processed_image, self.image2)
+                imagem_processada_do_usuario = self.image2.convert("L")
+                self.matriz_de_erro = compair(processed_image, imagem_processada_do_usuario)
                 self.plot_error_matrix(self.matriz_de_erro)
 
     def plot_error_matrix(self, matrix):
         matrix = np.array(matrix)
         
-        # Normalizar a matriz para o intervalo [0, 255]
-        min_val = matrix.min()
-        max_val = matrix.max()
-        norm_matrix = (matrix - min_val) / (max_val - min_val) * 255
-        norm_matrix = norm_matrix.astype(np.uint8)  # Converter para uint8
 
         # Criar a figura e o eixo para plotar a matriz de erro
         fig, ax = plt.subplots()
-        cax = ax.imshow(norm_matrix, cmap='seismic', interpolation='nearest')
+        cax = ax.imshow(matrix, cmap='seismic',vmin=-255, vmax=255,  interpolation='nearest')
         fig.colorbar(cax)
         plt.axis('off')
 

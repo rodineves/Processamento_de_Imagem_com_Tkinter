@@ -7,18 +7,13 @@ def compair(img_ori_pross, img_mine):
     if img_ori_pross.size != img_mine.size or img_ori_pross.mode != img_mine.mode:
         raise ValueError("As imagens não são do mesmo tamanho ou modo.")
     
-    l, c = img_ori_pross.size
-    print(f"{l} e {c}")
-    matrix = [[0 for _ in range(l)] for _ in range(c)]
+    img_processada_do_usuario = np.array(img_ori_pross)
+    img_processada_pelo_programa = np.array(img_mine)
     
-    img_ori_pross = np.array(img_ori_pross)
-    img_mine = np.array(img_mine)
-    
-    for x in range(l):
-        for y in range(c):
-            matrix[x][y] = img_ori_pross[x][y] - img_mine[x][y]
-    #matrix =  img_ori_pross.astype(int) - img_mine.astype(int)
-    return matrix
+    m = img_processada_pelo_programa - img_processada_do_usuario
+    #print(m)
+
+    return m
     
     
 
