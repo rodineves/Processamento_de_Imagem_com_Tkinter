@@ -103,8 +103,8 @@ class Processamento:
                             img.putpixel((x, y), (255, 255, 255))
                         if thresholds[i] <= media < thresholds[i+1]:
                             img.putpixel((x, y), (thresholds[i], thresholds[i], thresholds[i]))
-        #img.save("imgs/gatenho_threshhold.jpg")
-        #self.display_img(img)
+        # img.save("imgs/gatenho_threshhold.jpg")
+        # self.display_img(img)
         return img
     
     def calculate_difference(self, image1, image2):
